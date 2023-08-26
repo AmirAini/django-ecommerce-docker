@@ -1,0 +1,51 @@
+version: '3.8'
+services: 
+
+  redis: 
+    image: redis:alpine
+    container_name: redis
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    container_name: postgres_container
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=root@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin_password
+    ports:
+      - "5050:80"
+    container_name: pgadmin_container
+  
+  project:
+    build: .
+    volumes:
+      - .:/django
+    ports:
+      - 8000:8000
+    image: project:django
+    container_name: django_container
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+  
+  celery:
+    restart: always
+    build: 
+      context: . #define location of Dockerfile
+    command: celery -A core worker -l INFO #return info to terminal
+    volumes:
+      - .:/django
+    depends_on:
+      - db 
+      - redis
+      - project
+  
+
