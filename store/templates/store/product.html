@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %} {{product.title}} {% endblock%}
+
+{% block content %}
+<h1 class="visually-hidden">{{product}}</h1>
+<div class="px-4 py-5 my-5 text-center">
+  <img class="d-block mx-auto mb-4" src={{product.image.url}} alt="" width="180" height="120">
+  <h1 class="display-5 fw-bold">{{product.title}}</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">{{product.description}}</p>
+    <p class="lead mb-4">Price: ${{product.price}} </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add to cart</button>
+      <button type="button" class="btn btn-outline-secondary btn-lg px-4">Buy</button>
+    </div>
+  </div>
+</div>
+{%endblock%}
