@@ -1,6 +1,3 @@
-from math import prod
-from os import name
-from unicodedata import category
 from django.test import TestCase
 from store.models import Product,Category,User
 
