@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ae8$gmr(@nf+#tea8js()5_v-vx(%vbfi5s65^fpsbzyyb6%z4'
 DEBUG = True
 
-ALLOWED_HOSTS = ['abc.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
@@ -15,7 +15,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store'
+    'store',
+    'store_basket',
 ]
 
 MIDDLEWARE = [
