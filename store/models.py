@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.query import QuerySet
 from django.urls import reverse
+
+
+# Query Scope 
+class ProductManager(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super(ProductManager,self).get_queryset().filter(is_active = True)
 
 # Create your models here.
 class Category(models.Model):
@@ -28,6 +35,8 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
+    product = ProductManager()
     
     class Meta:
         verbose_name_plural= 'products'
@@ -38,4 +47,3 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[self.id])
-    

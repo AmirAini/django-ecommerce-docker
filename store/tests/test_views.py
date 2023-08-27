@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.test import Client, TestCase, RequestFactory
 from django.contrib.auth.models import User
 from store.models import Product, Category
-from store.views import all_products
+from store.views import product_all
 
 class TestViewResponses(TestCase):
     def setUp(self):
@@ -38,14 +38,14 @@ class TestViewResponses(TestCase):
         request = HttpRequest()
         
         # calling the view method
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8')
         self.assertEqual(response.status_code,200)
         self.assertIn('Home',html)
     
     def test_view_function(self):
         request = self.factory.get('bed')
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8')
         self.assertEqual(response.status_code,200)
     

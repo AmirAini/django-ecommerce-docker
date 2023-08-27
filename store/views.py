@@ -12,11 +12,11 @@ def all_categories(request):
     }
 
 # Create your views here.
-def all_products(request):
-    products = Product.objects.all()
+def product_all(request):
+    products = Product.product.all()
     return render(request,'store/home.html',{'products':products})
 
-def show_product(request,product_id):
+def product_detail(request,product_id):
     product = Product.objects.get(id=product_id)
     return render(request,'store/product.html',{'product':product})
 

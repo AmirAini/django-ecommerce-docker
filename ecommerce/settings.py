@@ -64,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.views.all_categories' #make function available for all pages
+                'store.context_processors.all_categories' #make function available for all pages
             ],
         },
     },
