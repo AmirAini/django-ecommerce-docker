@@ -1,10 +1,13 @@
 from django.contrib import admin
-from .models import Product,Category
+
+from .models import Category, Product
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name','slug']
-    prepopulated_fields = {'slug':('name',)}
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name', )}
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -21,6 +24,6 @@ class ProductAdmin(admin.ModelAdmin):
         'is_active'
     ]
     list_editable = [
-        'price','is_active'
+        'price', 'is_active'
     ]
-    prepopulated_fields = {'slug':('title',)}
+    prepopulated_fields = {'slug': ('title',)}
